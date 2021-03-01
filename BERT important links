@@ -23,3 +23,5 @@ https://medium.com/@djajafer/multi-class-text-classification-with-keras-and-lstm
 https://towardsdatascience.com/working-with-hugging-face-transformers-and-tf-2-0-89bf35e3555a
 https://towardsdatascience.com/sentiment-analysis-in-10-minutes-with-bert-and-hugging-face-294e8a04b671
 https://towardsdatascience.com/fine-tuning-hugging-face-model-with-custom-dataset-82b8092f5333       best end to end seq classifier
+
+https://colab.research.google.com/drive/14rYdqGAXJhwVzslXT4XIwNFBwkmBWdVV#scrollTo=bLFE2bp9f7Vv    bert NER finetune using Hugging face trainer 
