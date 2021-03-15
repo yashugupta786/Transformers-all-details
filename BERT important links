@@ -25,3 +25,6 @@ https://towardsdatascience.com/sentiment-analysis-in-10-minutes-with-bert-and-hu
 https://towardsdatascience.com/fine-tuning-hugging-face-model-with-custom-dataset-82b8092f5333       best end to end seq classifier
 
 https://colab.research.google.com/drive/14rYdqGAXJhwVzslXT4XIwNFBwkmBWdVV#scrollTo=bLFE2bp9f7Vv    bert NER finetune using Hugging face trainer 
+
+https://github.com/huggingface/transformers/tree/master/examples/legacy/seq2seq finetuning marian models 
+https://github.com/huggingface/transformers/tree/master/examples/research_projects/seq2seq-distillation
