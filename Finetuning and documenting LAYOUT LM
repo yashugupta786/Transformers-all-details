@@ -62,8 +62,12 @@ filename	x0	y0	x2	y2	line	label
 3	X51005757324	365	253	414	286	SDN	COMPANY
 
 
-create a method that will append the bbox info (filename, x0,y0,x2,y2,text,label)and the image width height to data frame 
+first we find the width     bbox_width = x2 - x0
+then for every word  x2 = x0 + int(bbox_width * len(word) / len(line_str))
+x0= original cordinate
+line str = length of complete sentence 
 
+create a method that will append the bbox info (filename, x0,y0,x2,y2,text,label)and the image width height to list of list based on filename
 
 
 
