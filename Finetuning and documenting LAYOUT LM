@@ -1,0 +1,69 @@
+LAYOUT LM finetuning for information extraction tasks
+the LAYOUT LM can be used for 2 task 
+1. classifying the document to its category 
+2. extracting the key value pairs from the document (INFormation extraction)
+   Notes:¶
+The notebook is using a preprocessing script included in the model's repo here which was originally used to fine tune the FUNSD dataset. We can train on the SROIE dataset with the same script because it's meant for sequence labeling.
+The original authors of the model got an F1 score 0.946 (using the base model) and the maximum I got was an F1 score 0.945 (20 epochs). This is an improvement over ruifcruz's score, because I also included the label "company address". The reason for a lower score, as explained by ruifcruz, could be:
+Different hyperparameters,
+quality OCR - the authors didn't use SROIE OCR scans, but created their own,
+better preprocessing
+
+
+1. Pre-processing the dataset (https://drive.google.com/drive/folders/1ShItNWXyiY1tFDM5W02bceHuJjyeeJl2)
+Before fine-tuning the model, we have to preprocess the SROIE dataset which can be downloaded from above. The dataset contains multiple subfolders, because the competition is split up into three tasks Text Localization, Optical character recognition (OCR) and Information Extraction (IE) and some folders are meant for their specific task. For our purposes we're only interested in the last task, so we'll be using these two folders:
+
+0325updated.task1train(626p) - contains receipt images (.jpg) and corresponding OCR'd bounding boxes and text (.txt)
+0325updated.task2train(626p) - contains labeled text (.txt) in a JSON format.
+
+
+------------------------------------------------------------Code -------------------------
+Read the data from 0325updated.task1train(626p) folder and extract the bounding box and given text with that 
+    So, the first step is reading the OCR data, where every line in the file includes a group of words and a bounding box which defines them. 
+    All we have to do is read the file, discard the unneeded points in the bounding box (because the model requires only the top-left and bottom-right points)
+    and save it in Pandas Dataframe.
+    method -- read_bbox_and_words()
+Reading the entities file¶  0325updated.task2train(626p) 
+    Now we need to read the entities file to know what to label in our text. for the respective data image and its coodinates
+    method read_entities()
+    
+Assigning labels to words using the entities data¶
+    We have our words/lines and entities, now we just need to put them together by labeling our lines using the entities values.
+    We'll be doing that by substring matching the entities values with the lines and if they don't match to a similarity check using pythons difflib.SequenceMatcher
+    and assigning anything above the 0.8 (80%) prediction match.
+    The label "O" will define all our words not labeled during the assignment step, because it's required for us to label everything.
+   method  assign_line_label()
+   and we make the data in the below format 
+   
+   	filename	x0	y0	x2	y2	line	label
+0	X51005757324	153	253	516	286	MR. D.I.Y. (M) SDN BHD	COMPANY
+1	X51005757324	190	287	482	318	(CO. REG :860671-D)	O
+2	X51005757324	56	321	596	354	LOT 1851-A & 1851-B, JALAN KPB 6 ,	ADDRESS
+3	X51005757324	70	355	579	388	KAWASAN PERINDUSTRIAN BALAKONG ,	ADDRESS
+4	X51005757324	88	389	583	418	43300 SERI KEMBANGAN, SELANGOR	ADDRESS
+5	X51005757324	124	424	532	455	(GST ID NO :000306020352)	O
+6	X51005757324	222	455	432	486	(IOI PUCHONG)	O
+7	X51005757324	220	490	434	518	-TAX INVOICE-	O
+8	X51005757324	8	557	583	588	TRAC DRY IRON TR-231IR - 1200W(SR) N	O
+9	X51005757324	632	559	669	586	*S	O
+10	X51005757324	6	592	154	618	WA10 - 12	O
+11	X51005757324	7	625	218	652	9555493002853
+
+Split words
+For the last part we're splitting the lines into separate tokens with their own bounding boxes.
+Splitting the bounding boxes based on word length is probably not the best approach, but it's good enough.
+	filename	x0	y0	x2	y2	line	label
+0	X51005757324	153	253	516	286	MR. D.I.Y. (M) SDN BHD	COMPANY
+Splitted row:
+filename	x0	y0	x2	y2	line	label
+0	X51005757324	153	253	202	286	MR.	COMPANY
+1	X51005757324	207	253	306	286	D.I.Y.	COMPANY
+2	X51005757324	311	253	360	286	(M)	COMPANY
+3	X51005757324	365	253	414	286	SDN	COMPANY
+
+
+create a method that will append the bbox info (filename, x0,y0,x2,y2,text,label)and the image width height to data frame 
+
+
+
+
