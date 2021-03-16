@@ -1,4 +1,6 @@
 LAYOUT LM finetuning for information extraction tasks
+
+https://www.kaggle.com/urbikn/layoutlm-using-the-sroie-dataset
 the LAYOUT LM can be used for 2 task 
 1. classifying the document to its category 
 2. extracting the key value pairs from the document (INFormation extraction)
