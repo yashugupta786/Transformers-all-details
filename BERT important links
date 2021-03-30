@@ -28,4 +28,5 @@ https://colab.research.google.com/drive/14rYdqGAXJhwVzslXT4XIwNFBwkmBWdVV#scroll
 
 https://github.com/huggingface/transformers/tree/master/examples/legacy/seq2seq finetuning marian models 
 https://github.com/huggingface/transformers/tree/master/examples/research_projects/seq2seq-distillation
-https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/           embeddings bert
+https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/           embeddings bert   
+https://datascience.stackexchange.com/questions/69640/what-should-be-the-labels-for-subword-tokens-in-bert-for-ner-task   dividing and calculating the word to subword and loss calculation
