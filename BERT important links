@@ -32,3 +32,4 @@ https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/           embe
 https://datascience.stackexchange.com/questions/69640/what-should-be-the-labels-for-subword-tokens-in-bert-for-ner-task   dividing and calculating the word to subword and loss calculation
 https://towardsdatascience.com/paraphrase-any-question-with-t5-text-to-text-transfer-transformer-pretrained-model-and-cbb9e35f1555     create paraphrase  and variations using T5
 https://towardsdatascience.com/transformers-explained-visually-part-1-overview-of-functionality-95a6dd460452  Transformers training and inferenence
+https://towardsdatascience.com/bert-for-measuring-text-similarity-eec91c6bf9e1    semantic search
