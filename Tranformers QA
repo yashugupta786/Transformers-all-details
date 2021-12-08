@@ -1,0 +1,5 @@
+What is the difference between batch_encode_plus() and encode_plus()
+
+See also the huggingface documentation, but as the name suggests batch_encode_plus tokenizes a batch of (pairs of) sequences whereas encode_plus tokenizes just a single sequence.
+Looking at the documentation both of these methods are deprecated and you use __call__ instead, 
+which checks by itself if the inputs are batched or not and calls the correct method (see the source code with the is_batched variable and if statement).
