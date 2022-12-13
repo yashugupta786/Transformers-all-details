@@ -1,0 +1,6 @@
+Current understanding 
+
+IT is a model used to get the key value pairs from the scanned documents . It help in maintaing the layout of the document . How it works is it take input 3 things 
+
+words of the document, its bounding boxes and image  and for labels it takes its labels for all the tokens . 
+It internally uses dectectron2 model from facebook 
