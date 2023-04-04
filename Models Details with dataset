@@ -10,3 +10,5 @@ Evaluated model-: bart-large-xsum-samsum
 https://huggingface.co/lidiya/bart-large-xsum-samsum
 after summarizing the data we can create short notes of that data (Actuak gist of the chat) for further processing 
 max length is 1024 when finetuning bart
+
+I would exclude T5 a priority, since its max input length is 512, while Bart and Pegasus can be fed with max 1024 tokens
