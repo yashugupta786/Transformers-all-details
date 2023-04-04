@@ -3,3 +3,4 @@ Extracting the key information from the conversational data
 1. Topic modeling
 2. Key bert extrtacting important key phrases using bert embeddings 
 3. using summarization models like pegasus,BART,T5  (should be train on samsum conversational data)
+Evaluated model-: bart-large-xsum-samsum
