@@ -5,3 +5,4 @@ Extracting the key information from the conversational data
 3. using summarization models like pegasus,BART,T5  (should be train on samsum conversational data)
 Evaluated model-: bart-large-xsum-samsum
 https://huggingface.co/lidiya/bart-large-xsum-samsum
+after summarizing the data we can create short notes of that data (Actuak gist of the chat) for further processing 
