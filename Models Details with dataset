@@ -1,4 +1,7 @@
-Extracting the key information from the conversational data 
+1. Summarizing the  the conversational data of customer  and agent to create transparency notes.
+Customer support agents spend typically spends lot of time and efforty writing notesafter each call, or while transfering the case to the next level of support.
+
+
 
 1. Topic modeling
 2. Key bert extrtacting important key phrases using bert embeddings 
