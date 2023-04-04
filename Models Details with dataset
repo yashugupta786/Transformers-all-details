@@ -9,3 +9,4 @@ Customer support agents spend typically spends lot of time and efforty writing n
 Evaluated model-: bart-large-xsum-samsum
 https://huggingface.co/lidiya/bart-large-xsum-samsum
 after summarizing the data we can create short notes of that data (Actuak gist of the chat) for further processing 
+max length is 1024 when finetuning bart
