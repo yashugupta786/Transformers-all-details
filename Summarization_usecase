@@ -24,3 +24,6 @@ Be it ineffective transfer of calls or forcing the customer to repeat their prob
 from repeating oneself by providing a prior summary to each new representative of the call center while the call reroutes to a new representative.
 
 This leads to improving CX,retention rates,brand image
+
+About Dataset:-About 75% of the corpus is a conversation between two people, the rest are between three or more.
+The dataset contains 14732 of training conversations, 818 for validation and 819 for testing
