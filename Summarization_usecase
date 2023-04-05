@@ -27,3 +27,10 @@ This leads to improving CX,retention rates,brand image
 
 About Dataset:-About 75% of the corpus is a conversation between two people, the rest are between three or more.
 The dataset contains 14732 of training conversations, 818 for validation and 819 for testing
+good reads----->https://medium.com/@ferlatti.aldo/fine-tuning-a-chat-summarizer-c18625bc817d
+
+Initially I was thinking of using the basic BART model (the large version), but after fine-tuning it I was not satisfied with the summaries it generated
+they were indeed short, but a lot of information were left out which I considered important. Because of that I decided to use the model which was fine-tuned on the 
+extreme summarization dataset (xsum). The dataset was developed for evaluation of abstractive single document summarization. 
+The dataset consists of 223.711 news articles with one sentence summaries
+
