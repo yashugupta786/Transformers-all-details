@@ -1,0 +1,16 @@
+Models like BERT, RoBERTa, etc. all take a max sequence length of 512 tokens.
+Note that these models use subword tokenization, which means that a given word might be tokenized into several tokens,
+so in practice these models can take in less than 500 words. So if you really want to use the pipeline API with a very long text, you can use models
+like LongFormer 23 or BigBird 18, which can handle 4096 tokens in a single forward pass.
+
+As an alternative (if you still want to use a model like BERT/RoBERTa), you can implement it using a sliding window approach. 
+You can do this using the tokenizer, like so:
+
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
+text = "a very long text"
+encoding = tokenizer(text, return_overflowing_tokens=True, stride=128)
+This will create multiple training examples (encodings) for a given text, by sliding a window (each having 128 tokens of overlap) across the text. 
+You can then feed each training example through the model, and average the predictions.
