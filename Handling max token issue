@@ -1,0 +1,18 @@
+Since all the Normal language models and large language model have the issue of max lenght . there are various ways of dealing it
+
+
+
+open AI  max length of gp3 is 409 tokens 
+
+1. OP perhaps you could attempt to implement whatever it is that the web ChatGPT is doing - split all your text into chunks of about 3000 words, get a summary of each 
+in separate API calls, and then send all the summaries in another API call, to get a "summary of summaries
+
+2. Truncate the text into chunks and overlap then pass to the model 
+
+3. Use langchain way of similarity and then based on that pass the conent to the model 
+
+
+
+
+Other Models like BERT and ROBERTA , T5 and BART \
+they do the truncaation of the text which causes problems in the accuracy as these can be handles as 
