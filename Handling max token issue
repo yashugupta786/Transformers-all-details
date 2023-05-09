@@ -25,7 +25,7 @@ sequences automatically. For most cases, this option is sufficient.
 for most of the subtexts for example). This option is obviously more expensive.
 3.You can even feed the output token for each subtext (as in option 2) to another network (but you won't be able to fine-tune) as described in this discussion.
 
----------------------Truncation strategy ----
+---------------------Truncation strategy ---- https://towardsdatascience.com/how-to-apply-transformers-to-any-length-of-text-a5601410af7f
 
 str1="Very long sebntence"
 
