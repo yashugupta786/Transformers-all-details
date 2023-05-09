@@ -39,3 +39,7 @@ Text Chunking mechanism---------->
 1.Do not add special token, first  create chunks of text from large sentnce then append special token to the text in the start and end
 2. Padding for the last chunk if shorter than the max length 
 3. then create the normal list to the pytorch  tensor 
+
+#---------------------------------------------------------------------------------------
+
+4 The other strategy is get a gist of the data where the main information resides and get that part of sentencees to the tokenizer
