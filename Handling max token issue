@@ -43,3 +43,36 @@ Text Chunking mechanism---------->
 #---------------------------------------------------------------------------------------
 
 4 The other strategy is get a gist of the data where the main information resides and get that part of sentencees to the tokenizer
+
+
+
+
+
+#-------------------ANOTHER FAMOUS SOLUTION APPROACH
+You have not mentioned if your intention is to classify, but given that you refer to an article on classification
+I will refer to an approach where you classify the whole text.
+
+The main question is - which part of the text is the most informative for your purpose - or - in other words - does it make sense to use more than the first / last split
+of text?
+
+When considering long passages of text, frequently, it is enough to consider the first (or last) 512 tokens to correctly predict the class in substantial majority of
+cases (say 90%). Even though you may loose some precision, you gain on speed and performance of the overall solution and you are getting rid of a nasty problem of
+figuring out the correct class out of a set of classifications. Why?
+
+Consider an example of text 2100 tokens long. You split it by 512 tokens, obtaining pieces: 512, 512, 512, 512, 52 (notice the small last piece - should you even 
+consider it?). Your target class for this text is, say, A, however you get the following predictions on the pieces: A, B, A, B, C. So you have now a headache to figure 
+out the right method to determine the class. You can:
+
+use majority voting but it is not conclusive here.
+weight the predictions by the length of the piece. Again non conclusive.
+check that prediction of the last piece is class C but it is barely above the threshold and class C is kinda A. So you are leaning towards A.
+re-classify starting the split from the end. In the same order as before you get: A, B, C, A, A. So, clearly A. You also get it when you majority vote combining 
+all of the classifications (forward and backward splits).
+consider the confidence of the classifications, e.g. A: 80, B: 70, A: 90, B: 60, C: 55% - avg. 85% for A vs. 65% for B.
+reconfirm the correction of labelling of the last piece manually: if it turns out to be B, then it changes all of the above.
+then you can train an additional network to classify out of the raw classifications of pieces. Getting again into trouble of figuring out what to do with particularly 
+long sequences or non-conclusive combinations of predictions resulting in poor confidence of the additional classification layer.
+It turns out that there is no easy way. And you will notice that text is a strange classification material exhibiting all of the above (and more) issues while 
+typically the difference in agreement between the first piece prediction and the annotation vs. the ultimate, perfect classifier is slim at best.
+
+So, spare the effort and strive for simplicity, performance, and heuristic... and clip it!
