@@ -2,7 +2,7 @@ Since all the Normal language models and large language model have the issue of 
 
 
 
-open AI  max length of gp3 is 409 tokens 
+open AI  max length of gp3 is 4096 tokens 
 
 1. OP perhaps you could attempt to implement whatever it is that the web ChatGPT is doing - split all your text into chunks of about 3000 words, get a summary of each 
 in separate API calls, and then send all the summaries in another API call, to get a "summary of summaries
@@ -15,4 +15,27 @@ in separate API calls, and then send all the summaries in another API call, to g
 
 
 Other Models like BERT and ROBERTA , T5 and BART \
-they do the truncaation of the text which causes problems in the accuracy as these can be handles as 
+1. truncation of text can be done based on the maximum lenghth which model can handlle. This leads to lot of problems in accuracy .
+Also overlapping of classes issues can be done as model will not get the important informayion due to truncation 
+
+1.You can cut the longer texts off and only use the first 512 Tokens. The original BERT implementation (and probably the others as well) truncates longer
+sequences automatically. For most cases, this option is sufficient.
+
+2.You can split your text in multiple subtexts, classify each of them and combine the results back together ( choose the class which was predicted 
+for most of the subtexts for example). This option is obviously more expensive.
+3.You can even feed the output token for each subtext (as in option 2) to another network (but you won't be able to fine-tune) as described in this discussion.
+
+---------------------Truncation strategy ----
+
+str1="Very long sebntence"
+
+tt=tokenizers.encode_plus(str1,add_special_token=False)
+
+tt will return inpyut id and attention mask 
+
+here length of  len(token["input_ids")]--------------------------------> 1600 which is larger than 512 for bert 
+
+Text Chunking mechanism---------->
+1.Do not add special token, first  create chunks of text from large sentnce then append special token to the text in the start and end
+2. Padding for the last chunk if shorter than the max length 
+3. then create the normal list to the pytorch  tensor 
